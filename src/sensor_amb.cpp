@@ -122,7 +122,13 @@ LeituraAmbiente amb_ler() {
     // É a mesma ideia da leitura que falha, num disfarce mais educado:
     // um número existir não significa que ele valha.
     // ─────────────────────────────────────────────────────────────────────
-    r.gases_validos = false;   // ← placeholder: troque pelo TODO 5
+    s_status = s_ens160.getENS160Status();
+
+    r.aqi = s_ens160.getAQI();      // 1 a 5
+    r.tvoc = s_ens160.getTVOC();    // ppb
+    r.eco2 = s_ens160.getECO2();    // ppm
+
+    r.gases_validos = (s_status == ENS160_OPERACAO_NORMAL);;   // 
 
     r.ok = true;               // chegou até aqui: a leitura vale
     return r;
