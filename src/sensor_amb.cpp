@@ -87,11 +87,10 @@ LeituraAmbiente amb_ler() {
 
     r.temperatura = evt_temperatura.temperature;
     r.umidade     = evt_umidade.relative_humidity;
+    s_ens160.setTempAndHum(r.temperatura, r.umidade); // Compensação do ENS160
 
     // ─────────────────────────────────────────────────────────────────────
     // TODO 4 — Compensação: contar ao ENS160 em que ar ele está medindo.
-    //
-    //   s_ens160.setTempAndHum(r.temperatura, r.umidade);
     //
     // O ENS160 é um sensor de óxido metálico: a resistência do elemento
     // dele muda com a temperatura e com a umidade, não só com os gases.
