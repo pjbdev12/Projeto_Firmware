@@ -114,14 +114,14 @@ LeituraParticulas pm_ler() {
     // ─────────────────────────────────────────────────────────────────────
     // TODO 7 — Copiar os três valores para a estrutura de saída.
     //
-    //   r.pm1_0 = dados.PM_AE_UG_1_0;
-    //   r.pm2_5 = dados.PM_AE_UG_2_5;
-    //   r.pm10  = dados.PM_AE_UG_10_0;
+    r.pm1_0 = dados.PM_AE_UG_1_0;
+    r.pm2_5 = dados.PM_AE_UG_2_5;
+    r.pm10  = dados.PM_AE_UG_10_0;
     //
     // O sensor informa DUAS famílias de valores, e é fácil pegar a errada:
     //
-    //   PM_SP_* → "standard particles": calibrada para ar de laboratório.
-    //   PM_AE_* → "atmospheric environment": calibrada para ar ambiente.
+    PM_SP_* → "standard particles": calibrada para ar de laboratório.
+    PM_AE_* → "atmospheric environment": calibrada para ar ambiente.
     //
     // Como o dispositivo vai medir o ar de uma sala, a família certa é a
     // AE. Os dois conjuntos existem lado a lado no mesmo quadro, com nomes
