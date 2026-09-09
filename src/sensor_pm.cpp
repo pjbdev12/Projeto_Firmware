@@ -26,33 +26,17 @@ void pm_definir_aquecimento_ms(uint32_t ms) {
 
 bool pm_init() {
     // ─────────────────────────────────────────────────────────────────────
-    // TODO 6 — Abrir a porta e acordar o sensor. Três linhas:
-    //
-    //   a) Serial2.begin(PMS_BAUD, SERIAL_8N1, PMS_PINO_RX, PMS_PINO_TX);
-    //
-    //      SERIAL_8N1 = 8 bits de dados, sem paridade, 1 stop bit — o
-    //      formato de quadro da apostila cap. 18. Os dois últimos
-    //      argumentos dizem em quais pinos a UART vai sair, porque no
-    //      ESP32 quase qualquer pino serve.
-    //
-    //   b) s_pms.activeMode();
-    //
-    //      Modo ATIVO: o sensor manda um quadro por conta própria, mais ou
-    //      menos uma vez por segundo, sem ninguém pedir. A alternativa
-    //      (passiveMode) exige pedir e ESPERAR a resposta — o que
-    //      bloquearia o laço, justamente o que este projeto evita.
-    //
-    //   c) s_pms.wakeUp();     // liga a ventoinha
-    // ─────────────────────────────────────────────────────────────────────
-    Serial.println("[PM] (TODO 6 pendente: UART ainda nao aberta)");
+  
 
-    // A partir daqui conta o aquecimento da ventoinha (TODO 8).
-    s_ventoinha_ligou_ms = millis();
-    return true;
-}
+s_pms.activeMode();
 
+//
+//   c) s_pms.wakeUp();     // liga a ventoinha
 
-// ═════════════════════════════════════════════════════════════════════════
+s_pms.wakeUp(); ─────────────────────────────────────────────────────────────────────
+Serial2.begin(PMS_BAUD, SERIAL_8N1, PMS_PINO_RX, PMS_PINO_TX);
+s_pms.activeMode();
+s_pms.wakeUp(); ═════════════════════════════════════════════════════════════════════════
 //  Escutar o que o sensor mandou
 //
 //  Este sensor não responde a perguntas: ele fala sozinho. O nosso papel
