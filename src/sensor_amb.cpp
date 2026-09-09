@@ -54,8 +54,17 @@ bool amb_init() {
     // sucesso, então o if dispara justamente quando deu certo. Este é o
     // tipo de erro que só se evita lendo a documentação em vez de presumir.
     // ─────────────────────────────────────────────────────────────────────
-
-    Serial.println("[Amb] (TODO 3 pendente: init ainda nao e verificado)");
+    // AHT21 — devolve bool, e true significa "respondeu"
+    if (!s_aht.begin()) {
+    Serial.println("[Amb] AHT21 nao respondeu (esperado em 0x38).");
+    return false;
+    }
+    // ENS160 — devolve int, e o sucesso é ZERO
+    if (s_ens160.begin() != NO_ERR) {
+    Serial.printf("[Amb] ENS160 nao respondeu em 0x%02X.\n", ENS160_ENDERECO);
+    return false;
+    }
+    s_ens160.setPWRMode(ENS160_STANDARD_MODE);
 
     Serial.println("[Amb] O ENS160 leva alguns minutos aquecendo antes de");
     Serial.println("      os valores de gas valerem. Isso e normal.");
